@@ -1,5 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { Entypo } from '@expo/vector-icons';
+import {
+  Entypo,
+  AntDesign,
+  FontAwesome5,
+  MaterialCommunityIcons,
+} from '@expo/vector-icons';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import LikeImage from './assets/images/like.png';
 
@@ -57,13 +62,29 @@ export default function App() {
               {post.numberOfShares === 1 ? 'share' : 'shares'}
             </Text>
           </View>
+          <View style={styles.buttonRow}>
+            <View style={styles.iconButtons}>
+              <AntDesign name="like2" size={18} color="gray" />
+              <Text style={styles.iconButtonsText}>Like</Text>
+            </View>
+            <View style={styles.iconButtons}>
+              <FontAwesome5 name="comment-alt" size={18} color="gray" />
+              <Text style={styles.iconButtonsText}>Comment</Text>
+            </View>
+            <View style={styles.iconButtons}>
+              <MaterialCommunityIcons
+                name="share-outline"
+                size={18}
+                color="gray"
+              />
+              <Text style={styles.iconButtonsText}>Share</Text>
+            </View>
+          </View>
         </View>
       </View>
-      <StatusBar style="auto" />
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -120,5 +141,19 @@ const styles = StyleSheet.create({
   shares: {
     color: 'grey',
     marginLeft: 'auto',
+  },
+  buttonRow: {
+    marginVertical: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  iconButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconButtonsText: {
+    color: 'gray',
+    marginLeft: 5,
+    fontWeight: '500',
   },
 });
