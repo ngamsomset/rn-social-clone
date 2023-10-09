@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Entypo } from '@expo/vector-icons';
 import { StyleSheet, Text, View, Image } from 'react-native';
+import LikeImage from './assets/images/like.png';
 
 const post = {
   id: 'p1',
@@ -15,7 +16,7 @@ const post = {
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   image: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg',
   numberOfLikes: 11,
-  numberOfShares: 2,
+  numberOfShares: 1,
 };
 
 export default function App() {
@@ -45,7 +46,18 @@ export default function App() {
           <Image source={{ uri: post.image }} style={styles.image} />
         )}
         {/* footer */}
-        <View style={styles.footer}></View>
+        <View style={styles.footer}>
+          <View style={styles.statsRow}>
+            <Image source={LikeImage} style={styles.likeIcon} />
+            <Text style={styles.likedBy}>
+              Simon and {post.numberOfLikes} others
+            </Text>
+            <Text style={styles.shares}>
+              {post.numberOfShares}{' '}
+              {post.numberOfShares === 1 ? 'share' : 'shares'}
+            </Text>
+          </View>
+        </View>
       </View>
       <StatusBar style="auto" />
     </View>
@@ -87,5 +99,26 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     aspectRatio: 1,
+  },
+  footer: {
+    paddingHorizontal: 10,
+  },
+  statsRow: {
+    flexDirection: 'row',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    paddingVertical: 10,
+    borderColor: 'lightgray',
+  },
+  likeIcon: {
+    width: 20,
+    height: 20,
+    marginRight: 5,
+  },
+  likedBy: {
+    color: 'grey',
+  },
+  shares: {
+    color: 'grey',
+    marginLeft: 'auto',
   },
 });
