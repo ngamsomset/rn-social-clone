@@ -40,12 +40,7 @@ const CreatePostScreen = () => {
     }
   };
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={[styles.container, { marginBottom: 10 }]}
-      contentContainerStyle={{ flex: 1 }}
-      keyboardVerticalOffset={150}
-    >
+    <View style={styles.container}>
       <View style={styles.header}>
         <Image source={{ uri: user.image }} style={styles.profileImage} />
         <Text style={styles.name}>{user.name}</Text>
@@ -67,7 +62,7 @@ const CreatePostScreen = () => {
       <View style={styles.buttonContainer}>
         <Button onPress={onPost} title="Post" disabled={!inputText} />
       </View>
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 
