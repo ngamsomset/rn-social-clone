@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Entypo } from '@expo/vector-icons';
 import {
   Image,
   Text,
@@ -8,7 +9,7 @@ import {
   Button,
   KeyboardAvoidingView,
 } from 'react-native';
-import {} from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 
 const user = {
   id: 'u1',
@@ -19,11 +20,27 @@ const user = {
 
 const CreatePostScreen = () => {
   const [inputText, setInputText] = useState('');
+  const [image, setImage] = useState(null);
 
   function onPost() {
     console.warn(inputText);
     setInputText('');
   }
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.uri);
+    }
+  };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -34,6 +51,13 @@ const CreatePostScreen = () => {
       <View style={styles.header}>
         <Image source={{ uri: user.image }} style={styles.profileImage} />
         <Text style={styles.name}>{user.name}</Text>
+        <Entypo
+          onPress={pickImage}
+          name="images"
+          size={24}
+          color="limegreen"
+          style={styles.icon}
+        />
       </View>
       <TextInput
         placeholder="what's on your mind?"
@@ -41,6 +65,7 @@ const CreatePostScreen = () => {
         onChangeText={setInputText}
         multiline
       />
+      <Image source={{ uri: image }} style={styles.image} />
       <View style={styles.buttonContainer}>
         <Button onPress={onPost} title="Post" disabled={!inputText} />
       </View>
@@ -72,6 +97,12 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 'auto',
+  },
+  icon: {
+    marginLeft: 'auto',
+  },
+  image: {
+    aspectRatio: 4 / 3,
   },
 });
 
