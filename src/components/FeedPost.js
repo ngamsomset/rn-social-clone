@@ -7,30 +7,38 @@ import {
 } from '@expo/vector-icons';
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import LikeImage from '../../assets/images/like.png';
+import { useNavigation } from '@react-navigation/native';
 
 const FeedPost = ({ post }) => {
   const [isLiked, setIsLiked] = useState(false);
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       <View>
         {/* header */}
-        <View style={styles.header}>
-          <Image
-            source={{ uri: post.User.image }}
-            style={styles.profileImage}
-          />
-          <View>
-            <Text style={styles.name}>{post.User.name}</Text>
-            <Text style={styles.subtitle}>{post.createdAt}</Text>
+        <Pressable
+          onPress={() =>
+            navigation.navigate('Profile', { id: post.postUserId })
+          }
+        >
+          <View style={styles.header}>
+            <Image
+              source={{ uri: post.User.image }}
+              style={styles.profileImage}
+            />
+            <View>
+              <Text style={styles.name}>{post.User.name}</Text>
+              <Text style={styles.subtitle}>{post.createdAt}</Text>
+            </View>
+            <Entypo
+              name="dots-three-horizontal"
+              size={18}
+              color="grey"
+              style={styles.icon}
+            />
           </View>
-          <Entypo
-            name="dots-three-horizontal"
-            size={18}
-            color="grey"
-            style={styles.icon}
-          />
-        </View>
+        </Pressable>
         {/* body */}
         <Text style={styles.description}>{post.description}</Text>
         {post.image && (
@@ -87,6 +95,7 @@ const FeedPost = ({ post }) => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
