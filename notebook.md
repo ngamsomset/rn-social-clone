@@ -13,3 +13,8 @@ See `/src/navigation/index.js`
 To use Navigation, go to the component that we want to be the place to start the navigation. In this case, `/src/screens/FeedScreen.js`. Don't forget to render `Navigator` in the `App.js` instead of manually render component in the beginning.
 
 In `/src/screens/FeedScreen.js`, import `useNavigation` which we will use to navigate to the `createpost` page after user click on the createpost component. `FlatList` prop called `ListHeaderComponent` used to embeded a component on the top of the screen and it will take in a callback function that return a `Pressable` component which we pass the `onPress` to it. You can styles that component as you like.
+
+## styles
+
+- `alignSelf` control how child aligns in the cross direction, overriding the `alignItem` of the parent element.
+https://reactnative.dev/docs/layout-props, if the main container is align center and you want some of the child to align to the left, you can use `alignSelf`

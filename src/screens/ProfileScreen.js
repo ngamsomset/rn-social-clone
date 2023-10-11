@@ -49,11 +49,39 @@ const ProfileScreen = () => {
           <MaterialIcons name="logout" size={16} color="black" />
         </Pressable>
       </View>
+      {/* personal details block */}
+      <View style={styles.personalBlock}>
+        <Entypo
+          name="graduation-cap"
+          size={18}
+          color="gray"
+          style={{ width: 25 }}
+        />
+        <Text>Graduated from</Text>
+      </View>
+      <View style={styles.personalBlock}>
+        <Ionicons name="time" size={18} color="gray" style={{ width: 25 }} />
+        <Text>Joined since 2020</Text>
+      </View>
+      <View style={styles.personalBlock}>
+        <Entypo
+          name="location-pin"
+          size={18}
+          color="gray"
+          style={{ width: 25 }}
+        />
+        <Text>Joined since 2020</Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  personalBlock: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+  },
   buttonContainer: {
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row',
